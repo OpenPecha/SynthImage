@@ -1,10 +1,13 @@
+from pathlib import Path
+
 from PIL import Image, ImageChops
 
 from SynthImage.page_image import PageGenerator
 
+font_dir = Path(__file__).parent / "font"
 pgobject = PageGenerator(
     30,
-    "/Users/ogyenthoga/Desktop/Work/SynthImage/font/monlam_uni_ochan1.ttf",
+    str(font_dir / "monlam_uni_ochan1.ttf"),
     10,
     10,
     30,
@@ -43,12 +46,14 @@ def test_calculate__page_dimensions():
 
 def test_generate_page_image():
     actual_image = pgobject.generate_page_image(text)
-    actual_image_path = "/Users/ogyenthoga/Desktop/Work/SynthImage/tests/actual_page_output/actual_page_image.png"
+    data_dir = Path(__file__).parent / "expected_page_output"
+    actual_image_path = str(data_dir / "actual_page_image.png")
     actual_image.save(actual_image_path)
-    expected_image_path = "/Users/ogyenthoga/Desktop/Work/SynthImage/tests/expected_page_output/expected_page_image.png"
+    expected_image_path = str(data_dir / "expected_page_image.png")
     expected_image = Image.open(expected_image_path)
     actual_image = Image.open(actual_image_path)
     assert images_are_equal(actual_image, expected_image)
+    Path(actual_image_path).unlink()
 
 
 def images_are_equal(img1, img2):
