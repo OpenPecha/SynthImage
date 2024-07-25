@@ -17,12 +17,20 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
+dependencies = [
+  "pillow >=10.4.0",
+  "numpy >=2.0.1",
+  "opencv-python >=4.10.0.84"
+]
+
 [project.optional-dependencies]
 dev = [
     "pytest",
     "pytest-cov",
     "pre-commit",
 ]
+
+
 
 
 [project.urls]
