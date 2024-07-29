@@ -4,7 +4,7 @@ from PIL import Image, ImageChops
 
 from SynthImage.page_image import PageGenerator
 
-font_dir = Path(__file__).parent / "font"
+font_dir = Path(__file__).parent / "data" / "font"
 pgobject = PageGenerator(
     30,
     str(font_dir / "monlam_uni_ochan1.ttf"),
@@ -46,7 +46,7 @@ def test_calculate__page_dimensions():
 
 def test_generate_page_image():
     actual_image = pgobject.generate_page_image(text)
-    data_dir = Path(__file__).parent / "expected_page_output"
+    data_dir = Path(__file__).parent / "data" / "expected_page_output"
     actual_image_path = str(data_dir / "actual_page_image.png")
     actual_image.save(actual_image_path)
     expected_image_path = str(data_dir / "expected_page_image.png")
