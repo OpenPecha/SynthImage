@@ -52,11 +52,11 @@ def test_generate_page_image():
     expected_image_path = str(data_dir / "expected_page_image.png")
     expected_image = Image.open(expected_image_path)
     actual_image = Image.open(actual_image_path)
-    assert images_are_equal(actual_image, expected_image)
+    assert is_same_img(actual_image, expected_image)
     Path(actual_image_path).unlink()
 
 
-def images_are_equal(img1, img2):
+def is_same_img(img1, img2):
     if img1.size != img2.size:
         return False
     diff = ImageChops.difference(img1, img2)
