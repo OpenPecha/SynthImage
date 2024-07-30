@@ -63,6 +63,14 @@ class PageGenerator:
         )  # Add padding
 
     def generate_page_image(self, page_text):
+        """Generates Synthetic page image
+
+        Args:
+            page_text (str): The text content to be rendered on the image
+
+        Returns:
+             PIL.Image.Image: An Image object representing the rendered page with the provided text
+        """
         page_image_dimension = self.calculate_image_dimension(page_text)
         page_img = Image.new("RGB", page_image_dimension, color="white")
         draw = ImageDraw.Draw(page_img)
