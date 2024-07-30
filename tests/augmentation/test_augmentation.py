@@ -14,27 +14,53 @@ agObject = Augmentation(original_img_obj, False)
 
 
 def test_deform_augmentation():
-    aug_img = agObject.apply_deform(30, 3, 90)
-    expected_aug_img_obj_dir = (
-        Path(__file__).parent / "data" / "aug_output" / "expected_aug_image_output"
+    aug_img = agObject.apply_deform(original_img_obj, 30, 3, 90)
+    expected_deform_aug_img_obj_dir = (
+        Path(__file__).parent
+        / "data"
+        / "aug_output"
+        / "expected_deform_aug_image_output"
     )
-    expected_save_path = expected_aug_img_obj_dir / "expected_augmented_image.png"
-    actual_aug_img_obj_dir = (
-        Path(__file__).parent / "data" / "aug_output" / "actual_aug_image_output"
+    expected_deform_save_path = (
+        expected_deform_aug_img_obj_dir / "expected_deform_augmented_image.png"
     )
-    actual_aug_img_obj_dir.mkdir(parents=True, exist_ok=True)
-    actual_save_path = actual_aug_img_obj_dir / "actual_augmented_image.png"
-    aug_img.save(actual_save_path)
-    expected_aug_img = Image.open(expected_save_path)
-    actual_aug_img = Image.open(actual_save_path)
-    assert images_are_equal(actual_aug_img, expected_aug_img)
-    Path(actual_save_path).unlink()
+    actual_deform_aug_img_obj_dir = (
+        Path(__file__).parent / "data" / "aug_output" / "actual_deform_aug_image_output"
+    )
+    actual_deform_aug_img_obj_dir.mkdir(parents=True, exist_ok=True)
+    actual_deform_save_path = (
+        actual_deform_aug_img_obj_dir / "actual_deform_augmented_image.png"
+    )
+    aug_img.save(actual_deform_save_path)
+    expected_aug_img = Image.open(expected_deform_save_path)
+    actual_aug_img = Image.open(actual_deform_save_path)
+    assert is_same_img(actual_aug_img, expected_aug_img)
+    Path(actual_deform_save_path).unlink()
 
 
-def images_are_equal(img1, img2):
+def test_distort_augmentation():
+    aug_img = agObject.apply_distort(original_img_obj, 1, 200, 100, 1, 2, 4)
+    expected_distort_aug_img_obj_dir = (
+        Path(__file__).parent
+        / "data"
+        / "aug_output"
+        / "expected_distort_aug_image_output"
+    )
+    expected_distort_aug_img_obj_dir.mkdir(parents=True, exist_ok=True)
+    expected_distort_save_path = (
+        expected_distort_aug_img_obj_dir / "expected_distort_augmented_image.png"
+    )
+    aug_img.save(expected_distort_save_path)
+
+
+def is_same_img(img1, img2):
     if img1.size != img2.size:
         return False
     diff = ImageChops.difference(img1, img2)
     if diff.getbbox():
         return False
     return True
+
+
+if __name__ == "__main__":
+    test_distort_augmentation()
