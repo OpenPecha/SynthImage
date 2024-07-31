@@ -7,7 +7,7 @@ from test_aug_utils import is_same_img
 from SynthImage.deform_augmentation import DeformAugmentation
 
 original_img_obj_path = Path(
-    "../../tests/page_image/data/expected_page_output/expected_page_image.png"
+    "../page_image/data/expected_page_output/expected_page_image.png"
 )
 original_img_obj = Image.open(original_img_obj_path)
 
