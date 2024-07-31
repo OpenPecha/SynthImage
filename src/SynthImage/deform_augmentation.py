@@ -105,7 +105,10 @@ class DeformAugmentation:
         """
         aug_img = self.original_img_obj
         page_img_np = np.array(aug_img)
-        deformed_page_img = deform_image(
-            page_img_np, self.grid, self.multiplier, self.offset
+        deformer = WaveDeformer(
+            grid=self.grid, multiplier=self.multiplier, offset=self.offset
         )
+        pil_image = Image.fromarray(page_img_np)
+        deformed_img = ImageOps.deform(pil_image, deformer)
+        deformed_page_img = np.array(deformed_img)
         return Image.fromarray(deformed_page_img)
