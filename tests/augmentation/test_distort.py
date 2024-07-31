@@ -25,9 +25,10 @@ def test_distort_augmentation():
     # Create a temporary directory for storing the actual output
     with tempfile.TemporaryDirectory() as tmpdirname:
         # Define paths for expected and actual output images
-        expected_distort_save_path = Path(
-            "../../tests/augmentation/data/aug_output/expected_distort_aug_image_output/expected_distort_augmented_image.png"  # noqa
-        )
+        expected_distort_save_path = (
+            Path(__file__).parent
+            / "../../tests/augmentation/data/aug_output/expected_distort_aug_image_output/expected_distort_augmented_image.png"  # noqa
+        )  # noqa
 
         # Save the actual distorted image to the temporary directory
         actual_distort_save_path = (

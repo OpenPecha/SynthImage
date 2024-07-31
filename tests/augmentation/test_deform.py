@@ -22,9 +22,10 @@ def test_deform_augmentation():
         # Apply deformation augmentation
         deform_aug_img = deformObject.apply_deform()
 
-        expected_deform_save_path = Path(
-            "../../tests/augmentation/data/aug_output/expected_deform_aug_image_output/expected_deform_augmented_image.png"  # noqa
-        )
+        expected_deform_save_path = (
+            Path(__file__).parent
+            / "../../tests/augmentation/data/aug_output/expected_deform_aug_image_output/expected_deform_augmented_image.png"  # noqa
+        )  # noqa
 
         # Save the actual deformed image to the temporary directory
         actual_deform_save_path = Path(tmpdirname) / "actual_deform_augmented_image.png"
