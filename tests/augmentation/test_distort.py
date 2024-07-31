@@ -19,6 +19,7 @@ distortObject = DistortAugmentation(
 
 
 def test_distort_augmentation():
+    """Tests the DistortAugmentation class by applying distortion to an image and comparing it to an expected output image."""  # noqa
     # Apply distortion augmentation
     distort_aug_img = distortObject.apply_distort()
 

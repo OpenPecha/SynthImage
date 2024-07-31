@@ -17,6 +17,7 @@ deformObject = DeformAugmentation(original_img_obj, 30, 3, 90)
 
 
 def test_deform_augmentation():
+    """Tests the DeformAugmentation class by applying deformation to an image and comparing it to an expected output image."""  # noqa
     # Create a temporary directory for storing the actual output
     with tempfile.TemporaryDirectory() as tmpdirname:
         # Apply deformation augmentation
