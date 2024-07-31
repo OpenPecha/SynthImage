@@ -61,25 +61,6 @@ class WaveDeformer:
         return [t for t in zip(target_grid, source_grid)]
 
 
-def deform_image(image: np.ndarray, grid_size, multiplier, offset):
-    """Applies a wave-like deformation to an input image.
-
-
-    Args:
-        image (np.ndarray):The input image as a NumPy array.
-        grid_size (_type_): The size of the grid for the deformation.
-        multiplier (_type_): The multiplier for the wave amplitude.
-        offset (_type_): The offset for the wave frequency.
-
-    Returns:
-        np.ndarray:  The deformed image as a NumPy array.
-    """
-    deformer = WaveDeformer(grid=grid_size, multiplier=multiplier, offset=offset)
-    pil_image = Image.fromarray(image)
-    deformed_img = ImageOps.deform(pil_image, deformer)
-    return np.array(deformed_img)
-
-
 class DeformAugmentation:
     def __init__(
         self, original_img_obj, grid: int = 20, multiplier: int = 6, offset: int = 70
