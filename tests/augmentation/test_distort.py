@@ -6,9 +6,11 @@ from test_aug_utils import is_same_img
 
 from SynthImage.distort_augmentation import DistortAugmentation, DistortionMode
 
-original_img_obj_path = Path(
-    "../page_image/data/expected_page_output/expected_page_image.png"
+original_img_obj_path = (
+    Path(__file__).parent
+    / "../../tests/page_image/data/expected_page_output/expected_page_image.png"
 )
+
 original_img_obj = Image.open(original_img_obj_path)
 
 distortObject = DistortAugmentation(
