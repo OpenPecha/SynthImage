@@ -21,7 +21,7 @@ def test_torn_augmentation():
 
     torn_aug_img = tornObject.apply_torn()
 
-    expected_torn_save_path = (
+    expected_torn_save_path = Path(
         "./tests/augmentation/data/expected_torn_image/expected_torn_image.png"  # noqa
     )
 
