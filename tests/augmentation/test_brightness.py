@@ -3,13 +3,13 @@ from pathlib import Path
 
 from PIL import Image
 
-from SynthImage.brightness_augmentation import BrightnessAugmentations
+from SynthImage.brightness_augmentation import BrightnessAugmentation
 
 original_img_path = Path("./tests/page_image/data/expected_page_image.png")
 
 original_img_obj = Image.open(original_img_path)
 
-brObject = BrightnessAugmentations(original_img_obj, 1.2)
+brObject = BrightnessAugmentation(original_img_obj, 1.2)
 
 
 def test_brightness_augmentation(utils):

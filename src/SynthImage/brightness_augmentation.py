@@ -1,7 +1,7 @@
 from PIL import ImageEnhance
 
 
-class BrightnessAugmentations:
+class BrightnessAugmentation:
     def __init__(self, original_img_obj, factor: float = 1.1):
         self.original_img_obj = original_img_obj
         self.factor = factor
