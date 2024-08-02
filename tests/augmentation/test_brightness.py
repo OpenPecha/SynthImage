@@ -13,6 +13,12 @@ brObject = BrightnessAugmentation(original_img_obj, 1.2)
 
 
 def test_brightness_augmentation(utils):
+    """Test the brightness augmentation function.
+
+    Args:
+        utils: A utility object that contains helper functions for testing,
+               specifically an `is_same_img` function that compares two images.
+    """
     # Apply brightness augmentation
     brightness_aug_img = brObject.apply_brightness()
     # Define the expected save directory
