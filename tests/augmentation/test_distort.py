@@ -15,6 +15,12 @@ distortObject = DistortAugmentation(
 
 
 def test_distort_augmentation(utils):
+    """Test the distortion augmentation function.
+
+    Args:
+         utils: A utility object that contains helper functions for testing,
+               specifically an `is_same_img` function that compares two images.
+    """
     # Apply distortion augmentation
     distort_aug_img = distortObject.apply_distort()
 

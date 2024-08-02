@@ -13,6 +13,12 @@ deformObject = DeformAugmentation(original_img_obj, 30, 3, 90)
 
 
 def test_deform_augmentation(utils):
+    """Test the deformation augmentation function.
+
+    Args:
+        utils: A utility object that contains helper functions for testing,
+               specifically an `is_same_img` function that compares two images.
+    """
     # Create a temporary directory for storing the actual output
     with tempfile.TemporaryDirectory() as tmpdirname:
         # Apply deformation augmentation
