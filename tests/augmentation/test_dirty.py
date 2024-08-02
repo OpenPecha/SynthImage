@@ -14,7 +14,8 @@ dirty_spots = [(50, 50, 20), (150, 100, 30), (200, 200, 25)]
 dirtyObject = DirtySpotAugmentation(original_img_obj, dirty_spots)
 
 
-def test_deform_augmentation():
+def test_dirty_augmentation():
+    """Test the dirty augmentation function."""
     # Apply dirty augmentation
     dirty_aug_img = dirtyObject.apply_dirty()
 
