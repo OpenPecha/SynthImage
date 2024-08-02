@@ -13,6 +13,12 @@ rObject = RotateAugmentation(original_img_obj, 5)
 
 
 def test_rotate_augmentation(utils):
+    """Test the Rotate augmentation function.
+
+    Args:
+        utils: A utility object that contains helper functions for testing,
+               specifically an `is_same_img` function that compares two images.
+    """
 
     # Apply rotate augmentation
     rotate_aug_img = rObject.apply_rotate()

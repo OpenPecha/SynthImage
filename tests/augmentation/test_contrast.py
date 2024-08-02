@@ -12,7 +12,13 @@ original_img_obj = Image.open(original_img_path)
 cObject = ContrastAugmentation(original_img_obj, 0.7)
 
 
-def test_brightness_augmentation(utils):
+def test_contrast_augmentation(utils):
+    """Test the Contrast augmentation function.
+
+    Args:
+        utils: A utility object that contains helper functions for testing,
+               specifically an `is_same_img` function that compares two images.
+    """
     # Apply brightness augmentation
     contrast_aug_img = cObject.apply_contrast()
     # Define the expected save directory

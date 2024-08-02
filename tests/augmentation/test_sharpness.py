@@ -12,8 +12,13 @@ original_img_obj = Image.open(original_img_path)
 sObject = SharpnessAugmentation(original_img_obj, 0.7)
 
 
-def test_rotate_augmentation(utils):
+def test_sharpness_augmentation(utils):
+    """Test the sharpness augmentation function.
 
+    Args:
+        utils: A utility object that contains helper functions for testing,
+               specifically an `is_same_img` function that compares two images.
+    """
     # Apply rotate augmentation
     sharpness_aug_img = sObject.apply_sharpness()
     expected_sharpness_save_path = Path(
