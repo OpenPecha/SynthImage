@@ -1,13 +1,13 @@
-from pathlib import Path
+import tempfile
 
-from PIL import Image, ImageChops
+from PIL import Image
 
 from SynthImage.page_image import PageGenerator
 
-font_dir = Path(__file__).parent / "font"
+font_path = "./tests/font/monlam_uni_ochan1.ttf"
 pgobject = PageGenerator(
     30,
-    str(font_dir / "monlam_uni_ochan1.ttf"),
+    font_path,
     10,
     10,
     30,
@@ -44,22 +44,15 @@ def test_calculate__page_dimensions():
     assert expected_height == height
 
 
-def test_generate_page_image():
+def test_generate_page_image(utils):
     actual_image = pgobject.generate_page_image(text)
-    data_dir = Path(__file__).parent / "expected_page_output"
-    actual_image_path = str(data_dir / "actual_page_image.png")
-    actual_image.save(actual_image_path)
-    expected_image_path = str(data_dir / "expected_page_image.png")
-    expected_image = Image.open(expected_image_path)
-    actual_image = Image.open(actual_image_path)
-    assert is_same_img(actual_image, expected_image)
-    Path(actual_image_path).unlink()
 
+    expected_image_path = "./tests/page_image/data/expected_page_image.png"
 
-def is_same_img(img1, img2):
-    if img1.size != img2.size:
-        return False
-    diff = ImageChops.difference(img1, img2)
-    if diff.getbbox():
-        return False
-    return True
+    with tempfile.TemporaryDirectory() as tempdirname:
+
+        actual_image_path = tempdirname + "/actual_page_image.png"
+        actual_image.save(actual_image_path)
+        expected_image = Image.open(expected_image_path)
+        actual_image = Image.open(actual_image_path)
+        assert utils.is_same_img(actual_image, expected_image)
