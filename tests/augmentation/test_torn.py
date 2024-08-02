@@ -17,16 +17,14 @@ tornObject = TornAugmentation(original_img_obj, 7, 40)
 
 def test_torn_augmentation():
     """Tests the TornAugmentation class by applying the torn effect to an image and comparing it to an expected output image."""  # noqa
-    # Create a temporary directory for storing the actual output
-
+    # Apply torn augmentation
     torn_aug_img = tornObject.apply_torn()
 
     expected_torn_save_path = Path(
         "./tests/augmentation/data/expected_torn_image/expected_torn_image.png"  # noqa
     )
-
+    # Create a temporary directory for storing the actual output
     with tempfile.TemporaryDirectory() as tmpdirname:
-        # Apply torn augmentation
 
         # Save the actual torned image to the temporary directory
         actual_torn_save_path = tmpdirname + "/actual_torn_augmented_image.png"
