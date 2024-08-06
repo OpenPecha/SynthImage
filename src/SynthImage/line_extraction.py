@@ -21,7 +21,7 @@ class ExtractLines:
         font = ImageFont.truetype(self.font_path, self.font_size, encoding="utf-16")
         line_images = []
 
-        # Create a blank image to draw text and calculate bounding boxes
+        # Create a blank image to draw text
         blank_img = Image.new("RGB", self.aug_img.size, (255, 255, 255))
 
         # Step 1: Determine the maximum width
@@ -44,8 +44,8 @@ class ExtractLines:
                 max_width = max(max_width, width)
                 line_bboxes.append((line, line_bbox))
 
-            # Move to the next line position with added padding
-            y += line_bbox[3] - line_bbox[1]  # Added padding
+            # Move to the next line position
+            y += line_bbox[3] - line_bbox[1]
 
         # Step 2: Extract lines with the maximum width
         y = max(
@@ -69,8 +69,8 @@ class ExtractLines:
             if np.any(line_aug_img_np != [255, 255, 255]):
                 line_images.append(line_aug_img)
 
-            # Move to the next line position with added padding
-            y += bbox[3] - bbox[1]  # Added padding
+            # Move to the next line position
+            y += bbox[3] - bbox[1]
 
         if self.rotation_angle != 0:
             for i in range(len(line_images)):
