@@ -15,7 +15,6 @@ class ExtractLines:
             self.aug_img = self.aug_img.rotate(
                 -self.rotation_angle, expand=True, fillcolor=(255, 255, 255)
             )
-            self.aug_img.show()
 
         lines = self.page_text.split("\n")
         font = ImageFont.truetype(self.font_path, self.font_size, encoding="utf-16")
