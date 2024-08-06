@@ -29,13 +29,10 @@ class ExtractLines:
         line_bboxes = []
         # Find the topmost position of the text after rotation
         non_white_pixels = np.where(np.array(self.aug_img) != 255)
-        if non_white_pixels[0].size > 0:
-            y = max(
-                np.min(non_white_pixels[0]).item()
-                if non_white_pixels[0].size > 0
-                else 0,
-                30,
-            )  # Start position for the first line
+        y = max(
+            np.min(non_white_pixels[0]).item() if non_white_pixels[0].size > 0 else 0,
+            30,
+        )  # Start position for the first line
         for line in lines:
             # Draw the line on the blank image to calculate the bounding box
             temp_img = blank_img.copy()
@@ -51,13 +48,10 @@ class ExtractLines:
             y += line_bbox[3] - line_bbox[1]  # Added padding
 
         # Step 2: Extract lines with the maximum width
-        if non_white_pixels[0].size > 0:
-            y = max(
-                np.min(non_white_pixels[0]).item()
-                if non_white_pixels[0].size > 0
-                else 0,
-                30,
-            )  # Reset start position for extraction
+        y = max(
+            np.min(non_white_pixels[0]).item() if non_white_pixels[0].size > 0 else 0,
+            30,
+        )  # Reset start position for extraction
         for line, bbox in line_bboxes:
             # Adjust bounding box width to max_width
             x1, y1, x2, y2 = bbox
