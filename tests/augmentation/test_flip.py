@@ -1,3 +1,4 @@
+import tempfile
 from pathlib import Path
 
 from PIL import Image
@@ -16,15 +17,17 @@ def test_vertical_flip():
     # Apply vertical flip augmentation
     vertical_flip_aug_img = flipObject.apply_vertical_flip()
     # Define the expected save directory
-    expected_vertical_flip_save_dir = Path(
-        "./tests/augmentation/data/expected_vertical_flip_image"
+    expected_vertical_flip_save_path = Path(
+        "./tests/augmentation/data/expected_vertical_flip_image/expected_vertical_flip_image.png"
     )
-    expected_vertical_flip_save_dir.mkdir(parents=True, exist_ok=True)
-
-    expected_vertical_flip_save_path = (
-        Path(expected_vertical_flip_save_dir) / "expected_vertical_flip_image.png"
-    )
-    vertical_flip_aug_img.save(expected_vertical_flip_save_path)
+    with tempfile.TemporaryDirectory() as tempdirname:
+        actual_vertical_flip_save_path = (
+            Path(tempdirname) / "actual_vertical_flip_image.png"
+        )
+        vertical_flip_aug_img.save(actual_vertical_flip_save_path)
+        expected_vertical_flip_image = Image.open(expected_vertical_flip_save_path)
+        actual_vertical_flip_image = Image.open(actual_vertical_flip_save_path)
+        assert expected_vertical_flip_image.size == actual_vertical_flip_image.size
 
 
 def test_horizontal_flip():
@@ -32,12 +35,14 @@ def test_horizontal_flip():
     # Apply horizontal flip augmentation
     horizontal_flip_aug_img = flipObject.apply_horizontal_flip()
     # Define the expected save directory
-    expected_horizontal_flip_save_dir = Path(
-        "./tests/augmentation/data/expected_horizontal_flip_image"
+    expected_horizontal_flip_save_path = Path(
+        "./tests/augmentation/data/expected_horizontal_flip_image/expected_horizontal_flip_image.png"
     )
-    expected_horizontal_flip_save_dir.mkdir(parents=True, exist_ok=True)
-
-    expected_horizontal_flip_save_path = (
-        Path(expected_horizontal_flip_save_dir) / "expected_horizontal_flip_image.png"
-    )
-    horizontal_flip_aug_img.save(expected_horizontal_flip_save_path)
+    with tempfile.TemporaryDirectory() as tempdirname:
+        actual_horizontal_flip_save_path = (
+            Path(tempdirname) / "actual_horizontal_flip_image.png"
+        )
+        horizontal_flip_aug_img.save(actual_horizontal_flip_save_path)
+        expected_horizontal_flip_image = Image.open(expected_horizontal_flip_save_path)
+        actual_horizontal_flip_image = Image.open(actual_horizontal_flip_save_path)
+        assert expected_horizontal_flip_image.size == actual_horizontal_flip_image.size

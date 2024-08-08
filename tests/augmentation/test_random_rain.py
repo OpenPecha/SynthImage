@@ -1,3 +1,4 @@
+import tempfile
 from pathlib import Path
 
 from PIL import Image
@@ -16,8 +17,12 @@ def test_random_rain():
     # Apply random rain augmentation
     rain_aug_img = rainObject.apply_random_rain()
     # Define the expected save directory
-    expected_rain_save_dir = Path("./tests/augmentation/data/expected_rain_image")
-    expected_rain_save_dir.mkdir(parents=True, exist_ok=True)
-
-    expected_rain_save_path = Path(expected_rain_save_dir) / "expected_rain_image.png"
-    rain_aug_img.save(expected_rain_save_path)
+    expected_rain_save_path = Path(
+        "./tests/augmentation/data/expected_rain_image/expected_rain_image.png"
+    )
+    with tempfile.TemporaryDirectory() as tempdirname:
+        actual_rain_save_path = Path(tempdirname) / "actual_rain_image.png"
+        rain_aug_img.save(actual_rain_save_path)
+        expected_rain_image = Image.open(expected_rain_save_path)
+        actual_rain_image = Image.open(actual_rain_save_path)
+        assert expected_rain_image.size == actual_rain_image.size

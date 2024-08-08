@@ -42,8 +42,7 @@ class RustingAugmentation:
                             p=0.5,
                         ),
                         A.RandomFog(
-                            fog_coef_lower=0.1,
-                            fog_coef_upper=0.3,
+                            fog_coef_range=(0.1, 0.3),
                             alpha_coef=0.1,
                             p=0.5,
                         ),

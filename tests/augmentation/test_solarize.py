@@ -1,3 +1,4 @@
+import tempfile
 from pathlib import Path
 
 from PIL import Image
@@ -16,12 +17,12 @@ def test_solarize():
     # Apply solarize augmentation
     solarize_aug_img = solarizeObject.apply_solarize()
     # Define the expected save directory
-    expected_solarize_save_dir = Path(
-        "./tests/augmentation/data/expected_solarize_image"
+    expected_solarize_save_path = Path(
+        "./tests/augmentation/data/expected_solarize_image/expected_solarize_image.png"
     )
-    expected_solarize_save_dir.mkdir(parents=True, exist_ok=True)
-
-    expected_solarize_save_path = (
-        Path(expected_solarize_save_dir) / "expected_solarize_image.png"
-    )
-    solarize_aug_img.save(expected_solarize_save_path)
+    with tempfile.TemporaryDirectory() as tempdirname:
+        actual_solarize_save_path = Path(tempdirname) / "actual_solarize_image.png"
+        solarize_aug_img.save(actual_solarize_save_path)
+        expected_solarize_image = Image.open(expected_solarize_save_path)
+        actual_solarize_image = Image.open(actual_solarize_save_path)
+        assert expected_solarize_image.size == actual_solarize_image.size

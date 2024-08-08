@@ -1,3 +1,4 @@
+import tempfile
 from pathlib import Path
 
 from PIL import Image
@@ -16,10 +17,12 @@ def test_rusting():
     # Apply rusting augmentation
     rusting_aug_img = rustingObject.apply_rusting()
     # Define the expected save directory
-    expected_rusting_save_dir = Path("./tests/augmentation/data/expected_rusting_image")
-    expected_rusting_save_dir.mkdir(parents=True, exist_ok=True)
-
-    expected_rusting_save_path = (
-        Path(expected_rusting_save_dir) / "expected_rusting_image.png"
+    expected_rusting_save_path = Path(
+        "./tests/augmentation/data/expected_rusting_image/expected_rusting_image.png"
     )
-    rusting_aug_img.save(expected_rusting_save_path)
+    with tempfile.TemporaryDirectory() as tempdirname:
+        actual_rusting_save_path = Path(tempdirname) / "actual_rusting_image.png"
+        rusting_aug_img.save(actual_rusting_save_path)
+        expected_rusting_image = Image.open(expected_rusting_save_path)
+        actual_rusting_image = Image.open(actual_rusting_save_path)
+        assert expected_rusting_image.size == actual_rusting_image.size

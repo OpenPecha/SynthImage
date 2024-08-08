@@ -1,3 +1,4 @@
+import tempfile
 from pathlib import Path
 
 from PIL import Image
@@ -16,10 +17,12 @@ def test_random_shadow():
     # Apply random shadow augmentation
     shadow_aug_img = shadowObject.apply_random_shadow()
     # Define the expected save directory
-    expected_shadow_save_dir = Path("./tests/augmentation/data/expected_shadow_image")
-    expected_shadow_save_dir.mkdir(parents=True, exist_ok=True)
-
-    expected_shadow_save_path = (
-        Path(expected_shadow_save_dir) / "expected_shadow_image.png"
+    expected_shadow_save_path = Path(
+        "./tests/augmentation/data/expected_shadow_image/expected_shadow_image.png"
     )
-    shadow_aug_img.save(expected_shadow_save_path)
+    with tempfile.TemporaryDirectory() as tempdirname:
+        actual_shadow_save_path = Path(tempdirname) / "actual_shadow_image.png"
+        shadow_aug_img.save(actual_shadow_save_path)
+        expected_shadow_image = Image.open(expected_shadow_save_path)
+        actual_shadow_image = Image.open(actual_shadow_save_path)
+        assert expected_shadow_image.size == actual_shadow_image.size

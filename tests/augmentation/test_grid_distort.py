@@ -1,3 +1,4 @@
+import tempfile
 from pathlib import Path
 
 from PIL import Image
@@ -14,12 +15,16 @@ distortObject = GridDistortAugmentation(original_img_obj)
 def test_grid_distort():
     """Test the grid distort augmentation function."""
     # Apply grid distort augmentation
-    distort_aug_img = distortObject.apply_grid_distort()
+    grid_distort_aug_img = distortObject.apply_grid_distort()
     # Define the expected save directory
-    expected_distort_save_dir = Path("./tests/augmentation/data/expected_distort_image")
-    expected_distort_save_dir.mkdir(parents=True, exist_ok=True)
-
-    expected_distort_save_path = (
-        Path(expected_distort_save_dir) / "expected_distort_image.png"
+    expected_grid_distort_save_path = Path(
+        "./tests/augmentation/data/expected_grid_distort_image/expected_grid_distort_image.png"
     )
-    distort_aug_img.save(expected_distort_save_path)
+    with tempfile.TemporaryDirectory() as tempdirname:
+        actual_grid_distort_save_path = (
+            Path(tempdirname) / "actual_grid_distort_image.png"
+        )
+        grid_distort_aug_img.save(actual_grid_distort_save_path)
+        expected_grid_distort_image = Image.open(expected_grid_distort_save_path)
+        actual_grid_distort_image = Image.open(actual_grid_distort_save_path)
+        assert expected_grid_distort_image.size == actual_grid_distort_image.size

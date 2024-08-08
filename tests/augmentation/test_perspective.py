@@ -1,3 +1,4 @@
+import tempfile
 from pathlib import Path
 
 from PIL import Image
@@ -16,12 +17,14 @@ def test_perspective():
     # Apply perspective augmentation
     perspective_aug_img = perspectiveObject.apply_perspective()
     # Define the expected save directory
-    expected_perspective_save_dir = Path(
-        "./tests/augmentation/data/expected_perspective_image"
+    expected_perspective_save_path = Path(
+        "./tests/augmentation/data/expected_perspective_image/expected_perspective_image.png"
     )
-    expected_perspective_save_dir.mkdir(parents=True, exist_ok=True)
-
-    expected_perspective_save_path = (
-        Path(expected_perspective_save_dir) / "expected_perspective_image.png"
-    )
-    perspective_aug_img.save(expected_perspective_save_path)
+    with tempfile.TemporaryDirectory() as tempdirname:
+        actual_perspective_save_path = (
+            Path(tempdirname) / "actual_perspective_image.png"
+        )
+        perspective_aug_img.save(actual_perspective_save_path)
+        expected_perspective_image = Image.open(expected_perspective_save_path)
+        actual_perspective_image = Image.open(actual_perspective_save_path)
+        assert expected_perspective_image.size == actual_perspective_image.size
