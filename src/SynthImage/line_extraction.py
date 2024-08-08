@@ -52,7 +52,7 @@ class ExtractLines:
             # Draw the line on the blank image to calculate the bounding box
             temp_img = blank_img.copy()
             temp_draw = ImageDraw.Draw(temp_img)
-            line_bbox = temp_draw.textbbox((20, y), line, font=font)
+            line_bbox = temp_draw.textbbox((10, y), line, font=font)
 
             if line_bbox[2] > line_bbox[0] and line_bbox[3] > line_bbox[1]:
                 width = line_bbox[2] - line_bbox[0]
