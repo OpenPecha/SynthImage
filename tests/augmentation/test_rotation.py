@@ -9,7 +9,7 @@ original_img_path = Path("./tests/page_image/data/expected_page_image.png")
 
 original_img_obj = Image.open(original_img_path)
 
-rObject = RotateAugmentation(original_img_obj, 5)
+rObject = RotateAugmentation(original_img_obj, 3)
 
 
 def test_rotate_augmentation(utils):
@@ -21,12 +21,12 @@ def test_rotate_augmentation(utils):
     """
 
     # Apply rotate augmentation
-    rotate_aug_img = rObject.apply_rotate()
+    rotate_aug_img, angle = rObject.apply_rotate()
     expected_rotate_save_path = Path(
-        "./tests/augmentation/data/expected_rotate_image/expected_rotate_image.png"
+        "./tests/augmentation/data/expected_rotate_image/expected_rotate_image_3.png"
     )
     with tempfile.TemporaryDirectory() as tempdirname:
-        actual_rotate_save_path = tempdirname + "/actual_rotate_image.png"
+        actual_rotate_save_path = tempdirname + f"/actual_rotate_image_{angle}.png"
         rotate_aug_img.save(actual_rotate_save_path)
         expected_rotate_image = Image.open(expected_rotate_save_path)
         actual_rotate_image = Image.open(actual_rotate_save_path)

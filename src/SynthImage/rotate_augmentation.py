@@ -22,4 +22,4 @@ class RotateAugmentation:
         if self.angle is None:
             self.angle = random.uniform(-5, 5)
         aug_img = aug_img.rotate(self.angle, expand=True, fillcolor=(255, 255, 255))
-        return aug_img
+        return aug_img, self.angle
