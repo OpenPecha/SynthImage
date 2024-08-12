@@ -3,7 +3,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from SynthImage.random_shadow_augmentation import RandomShadowAugmentation
+from SynthImage.Augmentation.random_shadow_augmentation import RandomShadowAugmentation
 
 original_img_path = Path("./tests/page_image/data/expected_page_image.png")
 

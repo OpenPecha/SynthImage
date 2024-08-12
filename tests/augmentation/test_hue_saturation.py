@@ -3,7 +3,9 @@ from pathlib import Path
 
 from PIL import Image
 
-from SynthImage.hue_saturation_augmentation import HueSaturationAugmentation
+from SynthImage.Augmentation.hue_saturation_augmentation import (
+    HueSaturationAugmentation,
+)
 
 original_img_path = Path("./tests/page_image/data/expected_page_image.png")
 

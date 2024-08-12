@@ -3,7 +3,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from SynthImage.solarize_augmentation import SolarizeAugmentation
+from SynthImage.Augmentation.solarize_augmentation import SolarizeAugmentation
 
 original_img_path = Path("./tests/page_image/data/expected_page_image.png")
 
