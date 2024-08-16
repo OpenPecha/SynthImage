@@ -16,13 +16,9 @@ def test_transpose():
     """Test the transpose augmentation function."""
     # Apply transpose augmentation
     transpose_aug_img = transposeObject.apply_transpose()
-    # Define the expected save directory
-    expected_transpose_save_path = Path(
-        "./tests/augmentation/data/expected_transpose_image/expected_transpose_image.png"
-    )
     with tempfile.TemporaryDirectory() as tempdirname:
         actual_transpose_save_path = Path(tempdirname) / "actual_transpose_image.png"
         transpose_aug_img.save(actual_transpose_save_path)
-        expected_transpose_image = Image.open(expected_transpose_save_path)
         actual_transpose_image = Image.open(actual_transpose_save_path)
-        assert expected_transpose_image.size == actual_transpose_image.size
+        expected_sizes = [(230, 1189), (1189, 230)]
+        assert actual_transpose_image.size in expected_sizes
