@@ -18,6 +18,6 @@ class RandomRainAugmentation:
         Returns:
             PIL.Image.Image: The image with random rain applied.
         """
-        aug = A.RandomRain(p=1)
+        aug = A.RandomRain()
         aug_img = aug(image=np.array(self.original_img_obj))["image"]
         return Image.fromarray(aug_img)

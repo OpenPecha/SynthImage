@@ -18,6 +18,6 @@ class TransposeAugmentation:
         Returns:
             PIL.Image.Image: The transpose applied to the image
         """
-        aug = A.Transpose(p=1)
+        aug = A.Transpose()
         aug_img = aug(image=np.array(self.original_img_obj))["image"]
         return Image.fromarray(aug_img)

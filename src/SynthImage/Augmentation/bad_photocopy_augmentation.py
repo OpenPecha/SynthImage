@@ -18,7 +18,7 @@ class BadPhotoCopyAugmentation:
         Returns:
             PIL.Image.Image: The bad photocopy image.
         """
-        aug = BadPhotoCopy(p=1)
+        aug = BadPhotoCopy()
         image_array = np.array(self.original_img_obj)
 
         # Apply augmentation

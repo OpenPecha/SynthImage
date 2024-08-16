@@ -18,7 +18,7 @@ class DirtyRollersAugmentation:
         Returns:
             PIL.Image.Image: The dirty rollers image.
         """
-        aug = DirtyRollers(p=1)
+        aug = DirtyRollers()
         image_array = np.array(self.original_img_obj)
 
         # Apply augmentation

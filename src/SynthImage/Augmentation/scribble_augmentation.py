@@ -22,7 +22,7 @@ class ScribbleAugmentation:
         image_array = np.array(self.original_img_obj)
 
         # Create the Scribbles augmentation object
-        aug = Scribbles(p=1)
+        aug = Scribbles()
 
         # Apply the scribbles augmentation
         aug_img = aug(image=image_array)

@@ -18,6 +18,6 @@ class GridDistortAugmentation:
         Returns:
             PIL.Image.Image: The grid distorted image.
         """
-        aug = A.GridDistortion(p=1)
+        aug = A.GridDistortion()
         aug_img = aug(image=np.array(self.original_img_obj))["image"]
         return Image.fromarray(aug_img)

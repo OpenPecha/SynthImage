@@ -18,6 +18,6 @@ class HueSaturationAugmentation:
         Returns:
             PIL.Image.Image: The hue saturation applied image.
         """
-        aug = A.HueSaturationValue(p=1)
+        aug = A.HueSaturationValue()
         aug_img = aug(image=np.array(self.original_img_obj))["image"]
         return Image.fromarray(aug_img)

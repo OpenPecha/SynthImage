@@ -18,7 +18,7 @@ class WaterMarkAugmentation:
         Returns:
             PIL.Image.Image: The water marked image.
         """
-        aug = WaterMark(p=1)
+        aug = WaterMark()
         image_array = np.array(self.original_img_obj)
 
         # Apply augmentation

@@ -18,6 +18,6 @@ class SunFlareAugmentation:
         Returns:
             PIL.Image.Image: The image with sun flare applied.
         """
-        aug = A.RandomSunFlare(p=1)
+        aug = A.RandomSunFlare()
         aug_img = aug(image=np.array(self.original_img_obj))["image"]
         return Image.fromarray(aug_img)
