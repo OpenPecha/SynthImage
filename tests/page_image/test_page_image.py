@@ -2,7 +2,7 @@ import tempfile
 
 from PIL import Image
 
-from SynthImage.page_image import PageGenerator
+from SynthImage.SynthPageImage.page_image import PageGenerator
 
 font_path = "./tests/font/monlam_uni_ochan1.ttf"
 pgobject = PageGenerator(

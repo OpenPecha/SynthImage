@@ -3,7 +3,7 @@ from pathlib import Path
 
 from PIL import Image, ImageFont
 
-from SynthImage.line_extraction import ExtractLines
+from SynthImage.LineExtraction.line_extraction import ExtractLines
 
 original_img_path = Path(
     "./tests/augmentation/data/expected_rotate_image/expected_rotate_image_3.png"

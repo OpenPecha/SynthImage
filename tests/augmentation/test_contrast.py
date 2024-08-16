@@ -3,7 +3,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from SynthImage.contrast_augmentation import ContrastAugmentation
+from SynthImage.Augmentation.contrast_augmentation import ContrastAugmentation
 
 original_img_path = Path("./tests/page_image/data/expected_page_image.png")
 

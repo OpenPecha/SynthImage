@@ -3,7 +3,10 @@ from pathlib import Path
 
 from PIL import Image
 
-from SynthImage.distort_augmentation import DistortAugmentation, DistortionMode
+from SynthImage.Augmentation.distort_augmentation import (
+    DistortAugmentation,
+    DistortionMode,
+)
 
 original_img_path = Path("./tests/page_image/data/expected_page_image.png")
 
