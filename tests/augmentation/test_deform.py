@@ -3,7 +3,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from SynthImage.deform_augmentation import DeformAugmentation
+from SynthImage.Augmentation.deform_augmentation import DeformAugmentation
 
 original_img_path = Path("./tests/page_image/data/expected_page_image.png")
 

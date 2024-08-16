@@ -3,7 +3,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from SynthImage.transpose_augmentation import TransposeAugmentation
+from SynthImage.Augmentation.transpose_augmentation import TransposeAugmentation
 
 original_img_path = Path("./tests/page_image/data/expected_page_image.png")
 

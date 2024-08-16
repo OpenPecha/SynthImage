@@ -3,7 +3,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from SynthImage.blur_augmentation import BlurAugmentation
+from SynthImage.Augmentation.blur_augmentation import BlurAugmentation
 
 original_img_path = Path("./tests/page_image/data/expected_page_image.png")
 

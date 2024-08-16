@@ -3,7 +3,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from SynthImage.sharpness_augmentation import SharpnessAugmentation
+from SynthImage.Augmentation.sharpness_augmentation import SharpnessAugmentation
 
 original_img_path = Path("./tests/page_image/data/expected_page_image.png")
 
