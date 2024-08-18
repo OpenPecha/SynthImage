@@ -3,7 +3,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from SynthImage.dirty_augmentation import DirtySpotAugmentation
+from SynthImage.Augmentation.dirty_augmentation import DirtySpotAugmentation
 
 original_img_path = Path("./tests/page_image/data/expected_page_image.png")
 

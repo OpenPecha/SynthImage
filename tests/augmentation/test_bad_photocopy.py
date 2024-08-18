@@ -3,7 +3,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from SynthImage.bad_photocopy_augmentation import BadPhotoCopyAugmentation
+from SynthImage.Augmentation.bad_photocopy_augmentation import BadPhotoCopyAugmentation
 
 original_img_path = Path("./tests/page_image/data/expected_page_image.png")
 

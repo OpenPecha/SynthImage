@@ -2,7 +2,7 @@ import tempfile
 
 from PIL import Image
 
-from SynthImage.page_image import PageGenerator
+from SynthImage.SynthPageImg.page_image import PageGenerator
 
 font_path = "./tests/font/monlam_uni_ochan1.ttf"
 pgobject = PageGenerator(
@@ -45,7 +45,7 @@ def test_calculate__page_dimensions():
 
 
 def test_generate_page_image(utils):
-    actual_image = pgobject.generate_page_image(text)
+    actual_image = pgobject.generate_page_images(text)
 
     expected_image_path = "./tests/page_image/data/expected_page_image.png"
 

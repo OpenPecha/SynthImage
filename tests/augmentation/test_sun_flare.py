@@ -3,7 +3,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from SynthImage.sun_flare_augmentation import SunFlareAugmentation
+from SynthImage.Augmentation.sun_flare_augmentation import SunFlareAugmentation
 
 original_img_path = Path("./tests/page_image/data/expected_page_image.png")
 

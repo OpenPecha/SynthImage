@@ -3,7 +3,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from SynthImage.water_mark_augmentation import WaterMarkAugmentation
+from SynthImage.Augmentation.water_mark_augmentation import WaterMarkAugmentation
 
 original_img_path = Path("./tests/page_image/data/expected_page_image.png")
 

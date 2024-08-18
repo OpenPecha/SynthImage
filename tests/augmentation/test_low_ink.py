@@ -3,7 +3,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from SynthImage.low_ink_augmentation import LowInkPeriodicLinesAugmentation
+from SynthImage.Augmentation.low_ink_augmentation import LowInkPeriodicLinesAugmentation
 
 original_img_path = Path("./tests/page_image/data/expected_page_image.png")
 

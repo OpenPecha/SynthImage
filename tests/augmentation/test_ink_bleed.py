@@ -3,7 +3,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from SynthImage.ink_bleed_augmentation import InkBleedAugmentation
+from SynthImage.Augmentation.ink_bleed_augmentation import InkBleedAugmentation
 
 original_img_path = Path("./tests/page_image/data/expected_page_image.png")
 

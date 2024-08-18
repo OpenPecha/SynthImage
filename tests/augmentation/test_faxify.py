@@ -3,7 +3,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from SynthImage.faxify_augmentation import FaxifyAugmentation
+from SynthImage.Augmentation.faxify_augmentation import FaxifyAugmentation
 
 original_img_path = Path("./tests/page_image/data/expected_page_image.png")
 

@@ -3,7 +3,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from SynthImage.grid_distort_augmentation import GridDistortAugmentation
+from SynthImage.Augmentation.grid_distort_augmentation import GridDistortAugmentation
 
 original_img_path = Path("./tests/page_image/data/expected_page_image.png")
 

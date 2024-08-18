@@ -3,7 +3,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from SynthImage.flip_augmentation import FlipAugmentation
+from SynthImage.Augmentation.vertical_flip_augmentation import FlipAugmentation
 
 original_img_path = Path("./tests/page_image/data/expected_page_image.png")
 

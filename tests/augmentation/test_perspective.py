@@ -3,7 +3,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from SynthImage.perspective_augmentation import PerspectiveAugmentation
+from SynthImage.Augmentation.perspective_augmentation import PerspectiveAugmentation
 
 original_img_path = Path("./tests/page_image/data/expected_page_image.png")
 
