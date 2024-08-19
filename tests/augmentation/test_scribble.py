@@ -16,7 +16,7 @@ def test_scribble():
     """Test the scribble augmentation function."""
 
     # Apply the scribble augmentation
-    scribble_aug_img = scribbleObject.apply_scribble()
+    scribble_aug_img = scribbleObject.apply()
     expected_scribble_path = Path(
         "./tests/augmentation/data/expected_scribble_image/expected_scribble_image.png"
     )

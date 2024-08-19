@@ -16,7 +16,7 @@ def test_water_mark():
     """Test the water mark augmentation function."""
 
     # Apply the water mark augmentation
-    water_mark_aug_img = waterMarkObject.apply_water_mark()
+    water_mark_aug_img = waterMarkObject.apply()
     expected_water_mark_path = Path(
         "./tests/augmentation/data/expected_water_mark_image/expected_water_mark_image.png"
     )

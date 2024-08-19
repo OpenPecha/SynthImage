@@ -5,7 +5,7 @@ from PIL import Image
 
 class BadPhotoCopyAugmentation:
     def __init__(self, original_img_obj):
-        """Initialize the BadPhtoCopyAugmentation class with an image.
+        """Initialize the BadPhotoCopyAugmentation class with an image.
 
         Args:
             original_img_obj (PIL.Image.Image): The input image to be augmented.
@@ -18,10 +18,18 @@ class BadPhotoCopyAugmentation:
         Returns:
             PIL.Image.Image: The bad photocopy image.
         """
-        aug = BadPhotoCopy(p=1)
-        image_array = np.array(self.original_img_obj)
+        # Convert the image to RGB if it's not already
+        if self.original_img_obj.mode != "RGB":
+            img_rgb = self.original_img_obj.convert("RGB")
+        else:
+            img_rgb = self.original_img_obj
 
-        # Apply augmentation
-        aug_img = aug(image=image_array)
+        # Convert the image to a NumPy array with uint8 type
+        image_array = np.array(img_rgb).astype(np.uint8)
 
-        return Image.fromarray(aug_img)
+        # Apply the BadPhotoCopy augmentation
+        aug = BadPhotoCopy()
+        augmented_image = aug(image=image_array)
+
+        # Convert the augmented NumPy array back to a PIL Image
+        return Image.fromarray(augmented_image)

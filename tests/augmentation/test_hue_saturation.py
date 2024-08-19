@@ -17,7 +17,7 @@ hueSatObject = HueSaturationAugmentation(original_img_obj)
 def test_hue_saturation():
     """Test the hue saturation augmentation function."""
     # Apply hue saturation augmentation
-    hue_sat_aug_img = hueSatObject.apply_hue_saturation()
+    hue_sat_aug_img = hueSatObject.apply()
     # Define the expected save directory
     expected_hue_saturation_save_path = Path(
         "./tests/augmentation/data/expected_hue_saturation_image/expected_hue_saturation_image.png"

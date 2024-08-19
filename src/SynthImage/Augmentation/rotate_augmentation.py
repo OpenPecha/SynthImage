@@ -1,8 +1,5 @@
-import random
-
-
-class RotateAugmentation:
-    def __init__(self, original_img_obj, angle: float = None):
+class RotationAugmentation:
+    def __init__(self, original_img_obj, angle: float = 4):
         """Initialize the RotateAugmentation object.
         Args:
             original_img_obj (PIL.Image.Image): The input image to be augmented.
@@ -19,7 +16,5 @@ class RotateAugmentation:
             PIL.Image.Image: The rotated image
         """
         aug_img = self.original_img_obj
-        if self.angle is None:
-            self.angle = random.uniform(-5, 5)
         aug_img = aug_img.rotate(self.angle, expand=True, fillcolor=(255, 255, 255))
         return aug_img

@@ -15,7 +15,7 @@ rustingObject = RustingAugmentation(original_img_obj)
 def test_rusting():
     """Test the rusting augmentation function."""
     # Apply rusting augmentation
-    rusting_aug_img = rustingObject.apply_rusting()
+    rusting_aug_img = rustingObject.apply()
     # Define the expected save directory
     expected_rusting_save_path = Path(
         "./tests/augmentation/data/expected_rusting_image/expected_rusting_image.png"

@@ -18,7 +18,7 @@ class InkBleedAugmentation:
         Returns:
             PIL.Image.Image: The ink bled image.
         """
-        aug = InkBleed(p=1)
+        aug = InkBleed()
         image_array = np.array(self.original_img_obj)
 
         # Apply augmentation

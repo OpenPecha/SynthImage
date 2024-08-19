@@ -15,7 +15,7 @@ rainObject = RandomRainAugmentation(original_img_obj)
 def test_random_rain():
     """Test the random rain augmentation function."""
     # Apply random rain augmentation
-    rain_aug_img = rainObject.apply_random_rain()
+    rain_aug_img = rainObject.apply()
     # Define the expected save directory
     expected_rain_save_path = Path(
         "./tests/augmentation/data/expected_rain_image/expected_rain_image.png"

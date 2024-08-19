@@ -16,7 +16,7 @@ def test_paper_texture():
     """Test the paper texture augmentation function."""
 
     # Apply the paper texture augmentation
-    paper_texture_aug_img = paperTextureObject.apply_paper_texture()
+    paper_texture_aug_img = paperTextureObject.apply()
     expected_paper_texture_path = Path(
         "./tests/augmentation/data/expected_paper_texture_image/expected_paper_texture_image.png"
     )

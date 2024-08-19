@@ -25,7 +25,7 @@ def test_distort_augmentation(utils):
                specifically an `is_same_img` function that compares two images.
     """
     # Apply distortion augmentation
-    distort_aug_img = distortObject.apply_distort()
+    distort_aug_img = distortObject.apply()
 
     # Create a temporary directory for storing the actual output
     with tempfile.TemporaryDirectory() as tmpdirname:

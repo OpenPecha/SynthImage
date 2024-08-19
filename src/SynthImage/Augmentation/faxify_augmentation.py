@@ -18,7 +18,7 @@ class FaxifyAugmentation:
         Returns:
             PIL.Image.Image: The faxified image.
         """
-        aug = Faxify(p=1)
+        aug = Faxify()
         image_array = np.array(self.original_img_obj)
 
         # Apply augmentation

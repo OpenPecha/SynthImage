@@ -15,7 +15,7 @@ sun_flare_Object = SunFlareAugmentation(original_img_obj)
 def test_sun_flare():
     """Test the sun flare augmentation function."""
     # Apply sun flare augmentation
-    sun_flare_aug_img = sun_flare_Object.apply_sun_flare()
+    sun_flare_aug_img = sun_flare_Object.apply()
     # Define the expected save directory
     expected_sun_flare_save_path = Path(
         "./tests/augmentation/data/expected_sun_flare_image/expected_sun_flare_image.png"

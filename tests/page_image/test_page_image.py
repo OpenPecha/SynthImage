@@ -2,12 +2,10 @@ import tempfile
 
 from PIL import Image
 
-from SynthImage.SynthPageImg.page_image import PageGenerator
+from SynthImage.SynthPageImage.page_image import PageGenerator
 
 font_path = "./tests/font/monlam_uni_ochan1.ttf"
 pgobject = PageGenerator(
-    30,
-    font_path,
     10,
     10,
     30,
@@ -37,7 +35,7 @@ def test_get_pages():
 
 
 def test_calculate__page_dimensions():
-    width, height = pgobject.calculate_image_dimension(text)
+    width, height = pgobject.calculate_image_dimension(text, 30, font_path)
     expected_width = 1189
     expected_height = 230
     assert expected_width == width
@@ -45,7 +43,7 @@ def test_calculate__page_dimensions():
 
 
 def test_generate_page_image(utils):
-    actual_image = pgobject.generate_page_images(text)
+    actual_image = pgobject.generate_page_image(text, 30, font_path)
 
     expected_image_path = "./tests/page_image/data/expected_page_image.png"
 

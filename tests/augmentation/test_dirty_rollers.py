@@ -16,7 +16,7 @@ def test_dirty_rollers():
     """Test the dirty rollers augmentation function."""
 
     # Apply the dirty rollers augmentation
-    dirty_rollers_aug_img = dirtyRollersObject.apply_dirty_rollers()
+    dirty_rollers_aug_img = dirtyRollersObject.apply()
     expected_dirty_rollers_path = Path(
         "./tests/augmentation/data/expected_dirty_rollers_image/expected_dirty_rollers_image.png"
     )

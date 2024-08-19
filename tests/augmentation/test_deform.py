@@ -22,7 +22,7 @@ def test_deform_augmentation(utils):
     # Create a temporary directory for storing the actual output
     with tempfile.TemporaryDirectory() as tmpdirname:
         # Apply deformation augmentation
-        deform_aug_img = deformObject.apply_deform()
+        deform_aug_img = deformObject.apply()
 
         expected_deform_save_path = Path(
             "./tests/augmentation/data/expected_deform_image/expected_deform_image.png"

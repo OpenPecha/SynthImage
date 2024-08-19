@@ -16,7 +16,7 @@ def test_low_ink_periodic_lines():
     """Test the low ink periodic lines augmentation function."""
 
     # Apply the low ink periodic lines augmentation
-    low_ink_periodic_lines_aug_img = paperTextureObject.apply_low_ink_periodic_lines()
+    low_ink_periodic_lines_aug_img = paperTextureObject.apply()
     expected_low_ink_periodic_lines_path = Path(
         "./tests/augmentation/data/expected_low_ink_periodic_lines_image/expected_low_ink_periodic_lines_image.png"
     )

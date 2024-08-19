@@ -3,13 +3,13 @@ from pathlib import Path
 
 from PIL import Image
 
-from SynthImage.Augmentation.rotate_augmentation import RotateAugmentation
+from SynthImage.Augmentation.rotate_augmentation import RotationAugmentation
 
 original_img_path = Path("./tests/page_image/data/expected_page_image.png")
 
 original_img_obj = Image.open(original_img_path)
 
-rObject = RotateAugmentation(original_img_obj, 3)
+rObject = RotationAugmentation(original_img_obj, 3)
 
 
 def test_rotate_augmentation(utils):
@@ -21,7 +21,7 @@ def test_rotate_augmentation(utils):
     """
 
     # Apply rotate augmentation
-    rotate_aug_img, angle = rObject.apply_rotate()
+    rotate_aug_img, angle = rObject.apply()
     expected_rotate_save_path = Path(
         "./tests/augmentation/data/expected_rotate_image/expected_rotate_image_3.png"
     )

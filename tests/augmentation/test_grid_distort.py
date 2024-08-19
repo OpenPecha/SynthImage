@@ -15,7 +15,7 @@ distortObject = GridDistortAugmentation(original_img_obj)
 def test_grid_distort():
     """Test the grid distort augmentation function."""
     # Apply grid distort augmentation
-    grid_distort_aug_img = distortObject.apply_grid_distort()
+    grid_distort_aug_img = distortObject.apply()
     # Define the expected save directory
     expected_grid_distort_save_path = Path(
         "./tests/augmentation/data/expected_grid_distort_image/expected_grid_distort_image.png"

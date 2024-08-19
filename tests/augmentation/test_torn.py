@@ -18,7 +18,7 @@ tornObject = TornAugmentation(original_img_obj, 7, 40)
 def test_torn_augmentation():
     """Tests the TornAugmentation class by applying the torn effect to an image and comparing it to an expected output image."""  # noqa
     # Apply torn augmentation
-    torn_aug_img = tornObject.apply_torn()
+    torn_aug_img = tornObject.apply()
 
     expected_torn_save_path = Path(
         "./tests/augmentation/data/expected_torn_image/expected_torn_image.png"  # noqa

@@ -15,7 +15,7 @@ solarizeObject = SolarizeAugmentation(original_img_obj)
 def test_solarize():
     """Test the solarize augmentation function."""
     # Apply solarize augmentation
-    solarize_aug_img = solarizeObject.apply_solarize()
+    solarize_aug_img = solarizeObject.apply()
     # Define the expected save directory
     expected_solarize_save_path = Path(
         "./tests/augmentation/data/expected_solarize_image/expected_solarize_image.png"

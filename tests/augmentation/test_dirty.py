@@ -17,7 +17,7 @@ dirtyObject = DirtySpotAugmentation(original_img_obj, dirty_spots)
 def test_dirty_augmentation():
     """Test the dirty augmentation function."""
     # Apply dirty augmentation
-    dirty_aug_img = dirtyObject.apply_dirty()
+    dirty_aug_img = dirtyObject.apply()
 
     expected_dirty_save_path = Path(
         "./tests/augmentation/data/expected_dirty_image/expected_dirty_image.png"

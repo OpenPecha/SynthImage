@@ -18,7 +18,7 @@ class LowInkPeriodicLinesAugmentation:
         Returns:
             PIL.Image.Image: The low ink periodic lines image.
         """
-        aug = LowInkPeriodicLines(p=1)
+        aug = LowInkPeriodicLines()
         image_array = np.array(self.original_img_obj)
 
         # Apply augmentation

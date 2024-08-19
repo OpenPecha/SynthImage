@@ -20,7 +20,7 @@ def test_contrast_augmentation(utils):
                specifically an `is_same_img` function that compares two images.
     """
     # Apply brightness augmentation
-    contrast_aug_img = cObject.apply_contrast()
+    contrast_aug_img = cObject.apply()
     # Define the expected save directory
     expected_contrast_save_path = Path(
         "./tests/augmentation/data/expected_contrast_image/expected_contrast_image.png"

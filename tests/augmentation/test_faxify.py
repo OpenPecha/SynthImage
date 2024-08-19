@@ -15,7 +15,7 @@ def test_faxify():
     """Test the faxify augmentation function."""
 
     # Apply the faxify augmentation
-    faxify_aug_img = faxifyObject.apply_faxify()
+    faxify_aug_img = faxifyObject.apply()
     expected_faxify_path = Path(
         "./tests/augmentation/data/expected_faxify_image/expected_faxify_image.png"
     )

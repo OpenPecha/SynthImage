@@ -3,9 +3,9 @@ import numpy as np
 from PIL import Image
 
 
-class RandomRainAugmentation:
+class FlipVerticalAugmentation:
     def __init__(self, original_img_obj):
-        """Initialize the RandomRainAugmentation class with an image.
+        """Initialize the FlipAugmentation class with an image.
 
         Args:
             original_img_obj (PIL.Image.Image): The input image to be augmented.
@@ -13,11 +13,11 @@ class RandomRainAugmentation:
         self.original_img_obj = original_img_obj
 
     def apply(self):
-        """Apply random rain to the image.
+        """Apply vertical flip to the image.
 
         Returns:
-            PIL.Image.Image: The image with random rain applied.
+            PIL.Image.Image: The vertical flip applied image.
         """
-        aug = A.RandomRain()
+        aug = A.VerticalFlip()
         aug_img = aug(image=np.array(self.original_img_obj))["image"]
         return Image.fromarray(aug_img)

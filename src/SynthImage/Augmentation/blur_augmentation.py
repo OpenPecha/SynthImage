@@ -18,6 +18,6 @@ class BlurAugmentation:
         Returns:
             PIL.Image.Image: The blurred image.
         """
-        aug = A.Blur(p=1)
+        aug = A.Blur()
         aug_img = aug(image=np.array(self.original_img_obj))["image"]
         return Image.fromarray(aug_img)

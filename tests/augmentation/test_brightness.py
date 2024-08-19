@@ -20,7 +20,7 @@ def test_brightness_augmentation(utils):
                specifically an `is_same_img` function that compares two images.
     """
     # Apply brightness augmentation
-    brightness_aug_img = brObject.apply_brightness()
+    brightness_aug_img = brObject.apply()
     # Define the expected save directory
     expected_brightness_save_path = Path(
         "./tests/augmentation/data/expected_brightness_image/expected_brightness_image.png"

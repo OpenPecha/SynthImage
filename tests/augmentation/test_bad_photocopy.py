@@ -16,7 +16,7 @@ def test_bad_photocopy():
     """Test the bad photocopy augmentation function."""
 
     # Apply the bad photocopy augmentation
-    bad_photocopy_aug_img = badPhotoCopyObject.apply_bad_photocopy()
+    bad_photocopy_aug_img = badPhotoCopyObject.apply()
     expected_bad_photocopy_path = Path(
         "./tests/augmentation/data/expected_bad_photocopy_image/expected_bad_photocopy_image.png"
     )

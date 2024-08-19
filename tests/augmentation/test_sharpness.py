@@ -20,7 +20,7 @@ def test_sharpness_augmentation(utils):
                specifically an `is_same_img` function that compares two images.
     """
     # Apply rotate augmentation
-    sharpness_aug_img = sObject.apply_sharpness()
+    sharpness_aug_img = sObject.apply()
     expected_sharpness_save_path = Path(
         "./tests/augmentation/data/expected_sharpness_image/expected_sharpness_image.png"
     )

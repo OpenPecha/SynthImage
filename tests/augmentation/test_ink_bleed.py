@@ -16,7 +16,7 @@ def test_ink_bleed():
     """Test the ink bleed augmentation function."""
 
     # Apply the ink bleed augmentation
-    ink_bleed_aug_img = inkBleedObject.apply_ink_bleed()
+    ink_bleed_aug_img = inkBleedObject.apply()
     expected_ink_bleed_path = Path(
         "./tests/augmentation/data/expected_ink_bleed_image/expected_ink_bleed_image.png"
     )
