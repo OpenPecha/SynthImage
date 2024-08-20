@@ -18,7 +18,7 @@ class BlurAugmentation:
         Returns:
             PIL.Image.Image: The blurred image.
         """
-        aug = A.Blur(p=1)
+        aug = A.Blur()
         aug_img = aug(image=np.array(self.original_img_obj))["image"]
         return Image.fromarray(aug_img)
 
@@ -28,7 +28,7 @@ class BlurAugmentation:
         Returns:
             PIL.Image.Image: The median blurred image.
         """
-        aug = A.MedianBlur(p=1)
+        aug = A.MedianBlur()
         aug_img = aug(image=np.array(self.original_img_obj))["image"]
         return Image.fromarray(aug_img)
 
@@ -38,6 +38,6 @@ class BlurAugmentation:
         Returns:
             PIL.Image.Image: The motion blurred image.
         """
-        aug = A.MotionBlur(p=1)
+        aug = A.MotionBlur()
         aug_img = aug(image=np.array(self.original_img_obj))["image"]
         return Image.fromarray(aug_img)

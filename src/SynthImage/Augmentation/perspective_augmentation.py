@@ -18,6 +18,6 @@ class PerspectiveAugmentation:
         Returns:
             PIL.Image.Image: The perspective applied to the image
         """
-        aug = A.Perspective(p=1)
+        aug = A.Perspective()
         aug_img = aug(image=np.array(self.original_img_obj))["image"]
         return Image.fromarray(aug_img)

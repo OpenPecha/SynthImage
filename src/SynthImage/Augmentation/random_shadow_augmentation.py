@@ -18,6 +18,6 @@ class RandomShadowAugmentation:
         Returns:
             PIL.Image.Image: The image with random shadow applied.
         """
-        aug = A.RandomShadow(p=1)
+        aug = A.RandomShadow()
         aug_img = aug(image=np.array(self.original_img_obj))["image"]
         return Image.fromarray(aug_img)

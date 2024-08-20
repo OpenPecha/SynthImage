@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw
 
 
 class DirtySpotAugmentation:
-    def __init__(self, original_img_obj, dirty_spots=None):
+    def __init__(self, original_img_obj, dirty_spots):
         """Initialize the DirtySpotAugmentation object.
 
         Args:
@@ -25,16 +25,6 @@ class DirtySpotAugmentation:
         """
         img_np = np.array(self.original_img_obj)
         height, width, _ = img_np.shape
-
-        # If no dirty spots are provided, generate random spots
-        if self.dirty_spots is None:
-            self.dirty_spots = []
-            num_spots = random.randint(1, 30)
-            for _ in range(num_spots):
-                x = random.randint(0, width - 1)
-                y = random.randint(0, height - 1)
-                size = random.randint(10, 30)  # Size of the dirty spot
-                self.dirty_spots.append((x, y, size))
 
         for spot in self.dirty_spots:
             x, y, size = spot

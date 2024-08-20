@@ -18,6 +18,6 @@ class SolarizeAugmentation:
         Returns:
             PIL.Image.Image: The image with solarize applied.
         """
-        aug = A.Solarize(p=1)
+        aug = A.Solarize()
         aug_img = aug(image=np.array(self.original_img_obj))["image"]
         return Image.fromarray(aug_img)

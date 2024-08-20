@@ -1,10 +1,8 @@
-import random
-
 from PIL import ImageEnhance
 
 
 class SharpnessAugmentation:
-    def __init__(self, original_img_obj, factor: float = None):
+    def __init__(self, original_img_obj, factor: float = 1.1):
         """Initialize the SharpnessAugmentation object.
 
         Args:
@@ -23,8 +21,6 @@ class SharpnessAugmentation:
             PIL.Image.Image: The image with adjusted sharpness.
         """
         aug_img = self.original_img_obj
-        if self.factor is None:
-            self.factor = random.uniform(0.7, 1.3)
         enhancer = ImageEnhance.Sharpness(aug_img)
         aug_img = enhancer.enhance(self.factor)
         return aug_img

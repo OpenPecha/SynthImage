@@ -18,7 +18,7 @@ class FlipAugmentation:
         Returns:
             PIL.Image.Image: The vertical flip applied image.
         """
-        aug = A.VerticalFlip(p=1)
+        aug = A.VerticalFlip()
         aug_img = aug(image=np.array(self.original_img_obj))["image"]
         return Image.fromarray(aug_img)
 
@@ -28,6 +28,6 @@ class FlipAugmentation:
         Returns:
             PIL.Image.Image: The horizontal flip applied image.
         """
-        aug = A.HorizontalFlip(p=1)
+        aug = A.HorizontalFlip()
         aug_img = aug(image=np.array(self.original_img_obj))["image"]
         return Image.fromarray(aug_img)
