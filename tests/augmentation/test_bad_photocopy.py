@@ -25,4 +25,4 @@ def test_bad_photocopy():
         bad_photocopy_aug_img.save(actual_bad_photocopy_path)
         expected_bad_photocopy_image = Image.open(expected_bad_photocopy_path)
         actual_bad_photocopy_image = Image.open(actual_bad_photocopy_path)
-        assert expected_bad_photocopy_image.size == actual_bad_photocopy_image.size
+        assert actual_bad_photocopy_image.size == expected_bad_photocopy_image.size
