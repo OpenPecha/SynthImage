@@ -13,7 +13,7 @@ def get_tokens(wt, text):
     return tokens
 
 
-class PechaPageGenerator:
+class ModernBookPageGenerator:
     def __init__(
         self,
         left_padding,
@@ -22,12 +22,12 @@ class PechaPageGenerator:
         bottom_padding,
         background_image=None,
         dimensions=[
-            (1123, 265),
-            (794, 265),
-            (1680, 402),
-            (1000, 128),
-            (1800, 630),
-            (2864, 680),
+            (626, 771),
+            (1063, 1536),
+            (259, 194),
+            (349, 522),
+            (974, 1500),
+            (968, 1440),
         ],  # List of possible dimensions
     ) -> None:
         self.left_padding = left_padding
@@ -51,7 +51,7 @@ class PechaPageGenerator:
         self.config = Config(dialect_name="general", base_path=Path.home())
         self.wt = WordTokenizer(config=self.config)
 
-    def generate_pecha_page_images(
+    def generate_modern_page_images(
         self, vol_text, font_sizes, font_path, dimension_probs, font_size_probs
     ):
         """Generates synthetic page images with random dimensions and random font sizes."""
@@ -70,7 +70,6 @@ class PechaPageGenerator:
 
         # Define tab size (number of spaces)
         tab_size = 4  # Adjust this value as needed
-
         # Ensure page_height is initialized before its first use
         page_height = 0  # Initialize page_height to avoid undefined errors
         current_font_size = 0  # Initialize font size to avoid undefined errors
