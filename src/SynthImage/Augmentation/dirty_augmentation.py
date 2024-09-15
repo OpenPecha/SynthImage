@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw
 
 
 class DirtySpotAugmentation:
-    def __init__(self, original_img_obj, dirty_spots=None):
+    def __init__(self, original_img_obj, dirty_spots):
         """Initialize the DirtySpotAugmentation object.
 
         Args:
