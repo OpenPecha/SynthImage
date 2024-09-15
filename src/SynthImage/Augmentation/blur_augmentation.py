@@ -12,32 +12,12 @@ class BlurAugmentation:
         """
         self.original_img_obj = original_img_obj
 
-    def apply_blur(self):
+    def apply(self):
         """Apply a blur effect to the image.
 
         Returns:
             PIL.Image.Image: The blurred image.
         """
         aug = A.Blur()
-        aug_img = aug(image=np.array(self.original_img_obj))["image"]
-        return Image.fromarray(aug_img)
-
-    def apply_median_blur(self):
-        """Apply a median blur effect to the image.
-
-        Returns:
-            PIL.Image.Image: The median blurred image.
-        """
-        aug = A.MedianBlur()
-        aug_img = aug(image=np.array(self.original_img_obj))["image"]
-        return Image.fromarray(aug_img)
-
-    def apply_motion_blur(self):
-        """Apply a motion blur effect to the image.
-
-        Returns:
-            PIL.Image.Image: The motion blurred image.
-        """
-        aug = A.MotionBlur()
         aug_img = aug(image=np.array(self.original_img_obj))["image"]
         return Image.fromarray(aug_img)

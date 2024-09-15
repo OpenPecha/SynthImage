@@ -12,7 +12,7 @@ class DirtyRollersAugmentation:
         """
         self.original_img_obj = original_img_obj
 
-    def apply_dirty_rollers(self):
+    def apply(self):
         """Apply a dirty rollers effect to the image.
 
         Returns:

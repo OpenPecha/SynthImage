@@ -21,8 +21,13 @@ dependencies = [
   "pillow >=10.4.0",
   "numpy >=1.24.4",
   "opencv-python >=4.10.0.84",
-  "albumentations >=1.4.13",
-  "augraphy >=8.2.6"
+  "albumentations >=1.4.14",
+  "augraphy >=8.2.6",
+  "botok >=0.8.12",
+  "boto3 >=1.35.5",
+  "numba >=0.60.0"
+
+
 ]
 
 [project.optional-dependencies]

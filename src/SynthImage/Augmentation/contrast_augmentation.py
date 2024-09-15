@@ -12,7 +12,7 @@ class ContrastAugmentation:
         self.original_img_obj = original_img_obj
         self.factor = factor
 
-    def apply_contrast(self):
+    def apply(self):
         """Apply contrast augmentation to the input image.
 
         Returns:

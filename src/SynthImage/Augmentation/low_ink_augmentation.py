@@ -12,7 +12,7 @@ class LowInkPeriodicLinesAugmentation:
         """
         self.original_img_obj = original_img_obj
 
-    def apply_low_ink_periodic_lines(self):
+    def apply(self):
         """Apply a low ink periodic lines effect to the image.
 
         Returns:

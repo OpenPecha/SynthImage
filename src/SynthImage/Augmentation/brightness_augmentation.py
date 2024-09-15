@@ -14,7 +14,7 @@ class BrightnessAugmentation:
         self.original_img_obj = original_img_obj
         self.factor = factor
 
-    def apply_brightness(self):
+    def apply(self):
         """Apply brightness augmentation to the input image.
 
         Returns:

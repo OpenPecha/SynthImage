@@ -78,7 +78,7 @@ class DeformAugmentation:
         self.multiplier = multiplier
         self.offset = offset
 
-    def apply_deform(self):
+    def apply(self):
         """Applies a wave-like deformation to the given image.
 
         Returns:

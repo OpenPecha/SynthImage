@@ -12,7 +12,7 @@ class SunFlareAugmentation:
         """
         self.original_img_obj = original_img_obj
 
-    def apply_sun_flare(self):
+    def apply(self):
         """Apply sun flare to the image.
 
         Returns:

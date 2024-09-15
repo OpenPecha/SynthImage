@@ -12,7 +12,7 @@ class SharpnessAugmentation:
         self.original_img_obj = original_img_obj
         self.factor = factor
 
-    def apply_sharpness(self):
+    def apply(self):
         """Apply sharpness augmentation to the input image.
             If the factor was not provided during initialization, a random factor
             between 0.7 and 1.3 will be generated.

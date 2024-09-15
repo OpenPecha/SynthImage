@@ -12,7 +12,7 @@ class GridDistortAugmentation:
         """
         self.original_img_obj = original_img_obj
 
-    def apply_grid_distort(self):
+    def apply(self):
         """Apply grid distortion to the image.
 
         Returns:

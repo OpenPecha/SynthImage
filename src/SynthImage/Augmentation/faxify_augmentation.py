@@ -12,7 +12,7 @@ class FaxifyAugmentation:
         """
         self.original_img_obj = original_img_obj
 
-    def apply_faxify(self):
+    def apply(self):
         """Apply the faxify effect to the image.
 
         Returns:

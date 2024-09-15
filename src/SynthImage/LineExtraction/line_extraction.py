@@ -1,135 +1,122 @@
+from typing import List
+
+import cv2
 import numpy as np
-from PIL import Image, ImageDraw, ImageFont
 
-import SynthImage.config as config  # Import the config file
+from SynthImage.SynthPageImage.pecha_format_page_image import (
+    draw_tight_line_bounding_boxes,
+)
 
 
-class ExtractLines:
-    def __init__(self, aug_img, page_text, rotation_angle, font_size, font_path):
-        """Initialize the ExtractLines object.
+def extract_lines_from_image(
+    image: np.ndarray, filename: str, page_number: int
+) -> List[np.ndarray]:
+    """
+    Extract lines from a page image using rectangle bounding box details.
+    Adds fixed padding to top and bottom to make the extraction more consistent.
 
-        Args:
-            aug_img (PIL.Image.Image): The augmented image from which to extract lines.
-            page_text (str): The text content of the page.
-            rotation_angle (int): The angle to rotate the image for line extraction.
-            font_size (int): The size of the font used in the image.
-            font_path (str): The path to the font file used in the image.
-        """
-        self.aug_img = aug_img
-        self.page_text = page_text
-        self.rotation_angle = rotation_angle
-        self.font_size = font_size
-        self.font_path = font_path
+    Args:
+        image (np.ndarray): Input page image.
+        filename (str): Name of the image file.
+        page_number (int): Page number of the image.
 
-    def get_blank_img(self):
-        """Create a blank white image with the same size as the augmented image.
+    Returns:
+        List[np.ndarray]: A list of extracted line images.
 
-        Returns:
-            PIL.Image.Image: A blank white image.
-        """
-        return Image.new("RGB", self.aug_img.size, config.WHITE_COLOR)
+    This function uses the draw_tight_line_bounding_boxes function to get bounding box details,
+    sorts them by vertical position, and extracts each line with added padding.
+    """
+    # Get bounding box details from pecha_format_page_image.py
+    _, _, bbox_details, _ = draw_tight_line_bounding_boxes(image, filename, page_number)
 
-    def get_max_width(self, lines, blank_img, font):
-        """Determine the maximum width of the lines of text and their bounding boxes.
+    line_images = []
+    page_height, page_width = image.shape[:2]
 
-        Args:
-            lines (list of str): The lines of text.
-            blank_img (PIL.Image.Image): A blank image used for calculating bounding boxes.
-            font (PIL.ImageFont.FreeTypeFont): The font used for the text.
+    # Sort bounding boxes by their vertical position (y-coordinate)
+    sorted_bboxes = sorted(bbox_details, key=lambda x: x["center"][1])
 
-        Returns:
-            tuple: The maximum width of the lines and a list of tuples, each containing a
-            line of text and its bounding box.
-        """
-        max_width = 0
-        line_bboxes = []
-        # Find the topmost position of the text after rotation
-        non_white_pixels = np.where(np.array(self.aug_img) != config.WHITE_COLOR)
-        y = max(
-            np.min(non_white_pixels[0]).item() if non_white_pixels[0].size > 0 else 0,
-            config.TOP_PADDING,
-        )  # Start position for the first line
+    for bbox in sorted_bboxes:
+        x, y = bbox["points"][0]
+        w = bbox["width"]
+        h = bbox["height"]
 
-        for line in lines:
-            # Draw the line on the blank image to calculate the bounding box
-            temp_img = blank_img.copy()
-            temp_draw = ImageDraw.Draw(temp_img)
-            line_bbox = temp_draw.textbbox((config.LEFT_PADDING, y), line, font=font)
+        # Add fixed padding of 6 pixels to both top and bottom
+        padding = 15
+        top = max(0, int(y) - padding)
+        bottom = min(page_height, int(y + h) + padding)
+        left = int(x)
+        right = int(x + w)
 
-            if line_bbox[2] > line_bbox[0] and line_bbox[3] > line_bbox[1]:
-                width = line_bbox[2] - line_bbox[0]
-                max_width = max(max_width, width)
-                line_bboxes.append((line, line_bbox))
+        # Extract the line image
+        line_img = image[top:bottom, left:right]
 
-            # Move to the next line position
-            y += line_bbox[3] - line_bbox[1]
-        return max_width, line_bboxes
+        line_images.append(line_img)
 
-    def get_line_images(self, max_width, line_bboxes):
-        """Extract images of each line of text based on their bounding boxes.
+    return line_images
 
-        Args:
-            max_width (int): The maximum width of the lines.
-            line_bboxes (list of tuples): A list of tuples, each containing a line of text and its bounding box.
-        Returns:
-            list of PIL.Image.Image: A list of images, each containing a line of text.
-        """
-        line_images = []
-        non_white_pixels = np.where(np.array(self.aug_img) != config.WHITE_COLOR)
-        y = max(
-            np.min(non_white_pixels[0]).item() if non_white_pixels[0].size > 0 else 0,
-            config.TOP_PADDING,
-        )  # Start position for the first line
 
-        for line, bbox in line_bboxes:
-            # Adjust bounding box width to max_width
-            x1, y1, x2, y2 = bbox
-            if self.rotation_angle != 0:
-                x2 = x1 + (max_width + 10)
-            else:
-                x2 = x1 + max_width
+def enhance_contrast(image: np.ndarray) -> np.ndarray:
+    """
+    Enhance the contrast of the image to improve text extraction.
 
-            # Crop the original image based on the adjusted bounding box
-            line_aug_img = self.aug_img.crop((x1, y1, x2, y2))
-            line_aug_img = line_aug_img.convert("RGB")
-            line_aug_img_np = np.array(line_aug_img)
+    Args:
+        image (np.ndarray): Input image in BGR format.
 
-            # Check if there are non-white pixels
-            if np.any(line_aug_img_np != [255, 255, 255]):
-                line_images.append(line_aug_img)
+    Returns:
+        np.ndarray: Contrast-enhanced image.
 
-            # Move to the next line position
-            y += bbox[3] - bbox[1]
-        return line_images
+    This function converts the image to LAB color space, applies CLAHE (Contrast Limited
+    Adaptive Histogram Equalization) to the L channel, and then converts it back to BGR.
+    """
+    lab = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
+    l, a, b = cv2.split(lab)
+    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+    cl = clahe.apply(l)
+    enhanced_image = cv2.merge((cl, a, b))
+    return cv2.cvtColor(enhanced_image, cv2.COLOR_LAB2BGR)
 
-    def extract_lines(self):
-        """Extract individual line images from the augmented image.
 
-        Returns:
-           list of PIL.Image.Image: A list of images, each containing a line of text.
-        """
-        if self.rotation_angle != 0:
-            self.aug_img = self.aug_img.rotate(
-                -self.rotation_angle, expand=True, fillcolor=config.WHITE_COLOR
-            )
+def preprocess_image(image: np.ndarray) -> np.ndarray:
+    """
+    Preprocess the image to improve text extraction.
 
-        lines = self.page_text.split("\n")
-        font = ImageFont.truetype(
-            self.font_path, self.font_size, encoding=config.FONT_ENCODING
-        )
+    Args:
+        image (np.ndarray): Input image in BGR format.
 
-        # Create a blank image to draw text
-        blank_img = self.get_blank_img()
-        # Determine the maximum width
-        max_width, line_bboxes = self.get_max_width(lines, blank_img, font)
+    Returns:
+        np.ndarray: Preprocessed binary image.
 
-        # Extract lines with the maximum width
-        line_images = self.get_line_images(max_width, line_bboxes)
+    This function enhances contrast, converts to grayscale, applies adaptive thresholding,
+    and performs morphological operations to prepare the image for line extraction.
+    """
+    enhanced_image = enhance_contrast(image)
+    gray = cv2.cvtColor(enhanced_image, cv2.COLOR_BGR2GRAY)
+    binary = cv2.adaptiveThreshold(
+        gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 11, 2
+    )
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (1, 5))
+    binary = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kernel, iterations=2)
+    binary = cv2.dilate(binary, kernel, iterations=1)
+    return binary
 
-        if self.rotation_angle != 0:
-            for i in range(len(line_images)):
-                line_images[i] = line_images[i].rotate(
-                    self.rotation_angle, expand=True, fillcolor=config.WHITE_COLOR
-                )
 
-        return line_images
+def extract_lines_with_preprocessing(
+    image: np.ndarray, filename: str, page_number: int
+) -> List[np.ndarray]:
+    """
+    Extract lines from a page image with preprocessing, using rectangle bounding box details.
+
+    Args:
+        image (np.ndarray): Input page image from which to extract lines.
+        filename (str): Name of the image file.
+        page_number (int): Page number of the image.
+
+    Returns:
+        List[np.ndarray]: A list of extracted and preprocessed line images.
+
+    This function preprocesses the input image and then extracts lines using the
+    extract_lines_from_image function.
+    """
+    preprocessed_image = preprocess_image(image)
+    line_images = extract_lines_from_image(preprocessed_image, filename, page_number)
+    return line_images

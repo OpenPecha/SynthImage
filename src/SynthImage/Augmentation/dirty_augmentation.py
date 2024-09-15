@@ -17,7 +17,7 @@ class DirtySpotAugmentation:
         self.original_img_obj = original_img_obj
         self.dirty_spots = dirty_spots
 
-    def apply_dirty(self):
+    def apply(self):
         """Apply dirty spot augmentation to the input image.
 
         Returns:
@@ -25,6 +25,18 @@ class DirtySpotAugmentation:
         """
         img_np = np.array(self.original_img_obj)
         height, width, _ = img_np.shape
+
+        if self.dirty_spots is None:
+            # Randomly generate dirty spots
+            num_spots = random.randint(1, 5)  # Random number of spots between 1 and 5
+            self.dirty_spots = []
+            for _ in range(num_spots):
+                x = random.randint(0, width - 1)
+                y = random.randint(0, height - 1)
+                size = random.randint(
+                    5, min(height, width) // 10
+                )  # Size between 5 and 10% of min dimension
+                self.dirty_spots.append((x, y, size))
 
         for spot in self.dirty_spots:
             x, y, size = spot

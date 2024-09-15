@@ -42,7 +42,7 @@ class DistortAugmentation:
         self.kernel_height = kernel_height
         self.kernel_iterations = kernel_iterations
 
-    def apply_distort(self):
+    def apply(self):
         """Applies a distortion effect to the given image using edge detection and morphological transformations.
 
         Returns:

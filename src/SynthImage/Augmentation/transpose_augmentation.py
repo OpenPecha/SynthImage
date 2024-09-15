@@ -12,7 +12,7 @@ class TransposeAugmentation:
         """
         self.original_img_obj = original_img_obj
 
-    def apply_transpose(self):
+    def apply(self):
         """Apply transpose to the image.
 
         Returns:

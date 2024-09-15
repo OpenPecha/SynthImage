@@ -12,7 +12,7 @@ class WaterMarkAugmentation:
         """
         self.original_img_obj = original_img_obj
 
-    def apply_water_mark(self):
+    def apply(self):
         """Apply a water mark effect to the image.
 
         Returns:

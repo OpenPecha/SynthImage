@@ -1,4 +1,4 @@
-class RotateAugmentation:
+class RotationAugmentation:
     def __init__(self, original_img_obj, angle: float = 4):
         """Initialize the RotateAugmentation object.
         Args:
@@ -8,7 +8,7 @@ class RotateAugmentation:
         self.original_img_obj = original_img_obj
         self.angle = angle
 
-    def apply_rotate(self):
+    def apply(self):
         """Apply rotation augmentation to the input image.
 
 
@@ -17,4 +17,4 @@ class RotateAugmentation:
         """
         aug_img = self.original_img_obj
         aug_img = aug_img.rotate(self.angle, expand=True, fillcolor=(255, 255, 255))
-        return aug_img, self.angle
+        return aug_img

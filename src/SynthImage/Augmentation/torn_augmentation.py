@@ -27,7 +27,7 @@ class TornAugmentation:
         self.jagged_step = jagged_step
         self.jagged_variability = jagged_variability
 
-    def apply_torn(self):
+    def apply(self):
         """Applies a torn effect to the original image.
 
         Returns:

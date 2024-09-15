@@ -12,7 +12,7 @@ class SolarizeAugmentation:
         """
         self.original_img_obj = original_img_obj
 
-    def apply_solarize(self):
+    def apply(self):
         """Apply solarize to the image.
 
         Returns:

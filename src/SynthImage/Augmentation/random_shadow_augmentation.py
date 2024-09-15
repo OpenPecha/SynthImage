@@ -12,7 +12,7 @@ class RandomShadowAugmentation:
         """
         self.original_img_obj = original_img_obj
 
-    def apply_random_shadow(self):
+    def apply(self):
         """Apply random shadow to the image.
 
         Returns:

@@ -12,7 +12,7 @@ class RandomRainAugmentation:
         """
         self.original_img_obj = original_img_obj
 
-    def apply_random_rain(self):
+    def apply(self):
         """Apply random rain to the image.
 
         Returns:

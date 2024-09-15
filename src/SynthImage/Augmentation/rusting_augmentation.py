@@ -48,7 +48,7 @@ class RustingAugmentation:
         self.brightness_limit = brightness_limit
         self.contrast_limit = contrast_limit
 
-    def apply_rusting(self):
+    def apply(self):
         """
         Apply a rusting effect to the image.
 

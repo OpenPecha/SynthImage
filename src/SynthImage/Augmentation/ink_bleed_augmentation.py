@@ -12,7 +12,7 @@ class InkBleedAugmentation:
         """
         self.original_img_obj = original_img_obj
 
-    def apply_ink_bleed(self):
+    def apply(self):
         """Apply an ink bleed effect to the image.
 
         Returns:
